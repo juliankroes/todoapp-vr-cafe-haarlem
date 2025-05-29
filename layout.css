@@ -1,0 +1,32 @@
+
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --background: #1d1921;
+    --primary: #ffffff;
+    --surface: #63108e;
+    --call-to-action: #35f2aa;
+    --alternative-call-to-action: #fd3d81;
+    --border-radius: 10px;
+}
+
+
+nav.nav-bar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    background-color: var(--surface);
+    margin: 0;
+}
+nav.nav-bar > div {
+    margin: 1rem;
+}
+nav.nav-bar > img.logo {
+    transform: translateY(30%);
+    margin-left: 3rem;
+}

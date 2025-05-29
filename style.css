@@ -73,3 +73,11 @@ button:hover {
 span.call-to-action {
     color: var(--call-to-action);
 }
+
+span.chip {
+    color: var(--primary);
+    background-color: var(--alternative-call-to-action);
+    border-radius: var(--border-radius);
+    font-size: 12px;
+    padding: .1rem .4rem;
+}
