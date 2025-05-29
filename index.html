@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="style.css">
+    <script src="app.js" defer></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Todo app</title>
@@ -24,23 +25,23 @@
 
     <section>
         <h3>Add a new todo item!</h3>
-        <input type="text" name="" id="" placeholder="Geef de planten water">
+        <input type="text" name="" id="textInput" placeholder="Geef de planten water">
         <br><br>
-        <select name="" id="">
-            <option value="categorie" selected>categorie</option>
+        <select name="" id="categoryDropdown">
+            <option value="" selected>categorie</option>
             <option value="2">Werk</option>
             <option value="3">Persoonlijk</option>
             <option value="3">Vrije Tijd</option>
         </select>
         <br><br>
-        <button>SUBMIT</button>
+        <button id="submitTodo">SUBMIT</button>
     </section>
 
     <section>
         <h3>Mijn todo lijst:</h3>
         <ul>
-            <li>Geef de planten water <span class="chip">persoonlijk</span></li>
-            <li>Maak de opdracht voor VR Cafe Haarlem <span class="chip">werk</span></li>
+            <li class="todo-item">Geef de planten water <span class="chip">persoonlijk</span></li>
+            <li class="todo-item">Maak de opdracht voor VR Cafe Haarlem <span class="chip">werk</span></li>
 
         </ul>
     </section>

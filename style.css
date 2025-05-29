@@ -81,3 +81,14 @@ span.chip {
     font-size: 12px;
     padding: .1rem .4rem;
 }
+
+li.todo-item {
+    transition: color .2s;
+}
+
+li.todo-item:hover {
+    color: grey;
+    font-style: italic;
+    text-decoration: line-through;
+    cursor: pointer;
+}
