@@ -1,0 +1,75 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+:root {
+    --background: #1d1921;
+    --primary: #ffffff;
+    --surface: #63108e;
+    --call-to-action: #35f2aa;
+    --alternative-call-to-action: #fd3d81;
+    --border-radius: 10px;
+}
+
+* {
+    font-family: "Rubik", sans-serif;
+    color: var(--primary);
+}
+
+body {
+    background-color: var(--background);
+}
+
+h1 {
+    font-size: 48px;
+}
+h2 {
+    font-size: 36px;
+}
+h3 {
+    font-size: 22px;
+}
+p {
+    font-size: 16px;
+}
+a, button, select, input[type=text] {
+    font-weight: bold;
+    font-size: 20px;
+}
+
+input[type=text] {
+    border: 2px solid grey;
+    border-radius: 9999px;
+    background-color: transparent;
+    padding: .2rem .4rem;
+}
+
+a {
+    text-decoration: none;
+}
+a:hover {
+    color: var(--call-to-action);
+    cursor: pointer;
+
+}
+
+select {
+    background-color: transparent;
+    border: none;
+}
+
+button {
+    background-color: var(--call-to-action);
+    color: var(--background);
+    padding: .5rem 1rem;
+    
+    border-radius: var(--border-radius);
+    transition: .2s;
+}
+button:hover {
+    background-color: var(--alternative-call-to-action);
+    color: var(--primary);
+    cursor: pointer;
+}
+
+span.call-to-action {
+    color: var(--call-to-action);
+}
