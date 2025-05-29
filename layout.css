@@ -30,3 +30,7 @@ nav.nav-bar > img.logo {
     transform: translateY(30%);
     margin-left: 3rem;
 }
+
+div.inline-item {
+    display: flex;
+}

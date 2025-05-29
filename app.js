@@ -31,6 +31,7 @@ submitButton.addEventListener("click", () => {
     }
 
     localSave(todo)
+    loadTodos()
 })
 
 
@@ -46,4 +47,32 @@ function getAllTodos() {
     const todoArrayString = localStorage.getItem(LOCAL_STORAGE_KEY)
     const todoArray = JSON.parse(todoArrayString);
     return todoArray
+}
+
+function loadTodos() {
+    todoList = document.getElementById("todoList")
+    todoList.innerHTML = ''
+    for (let todo of getAllTodos()) {
+        // create div with inline
+        inlineItem = document.createElement('div')
+        inlineItem.className = "inline-item"
+
+        // create li, add to div
+        todoItem = document.createElement('li')
+        todoItem.innerText = todo.todoItem;
+        todoItem.className = "todo-item"
+
+        inlineItem.appendChild(todoItem)
+
+        // create span, add to div
+        categoryChip = document.createElement('span')
+        categoryChip.innerText = todo.category;
+        categoryChip.className = "chip"
+
+        inlineItem.appendChild(categoryChip)
+
+        // append both to todolist
+        todoList.appendChild(inlineItem)
+
+    }
 }
