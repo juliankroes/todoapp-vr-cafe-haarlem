@@ -44,11 +44,10 @@ input[type=text] {
 
 a {
     text-decoration: none;
+    cursor: pointer;
 }
 a:hover {
     color: var(--call-to-action);
-    cursor: pointer;
-
 }
 
 select {
@@ -60,14 +59,13 @@ button {
     background-color: var(--call-to-action);
     color: var(--background);
     padding: .5rem 1rem;
-    
+    cursor: pointer;
     border-radius: var(--border-radius);
     transition: .2s;
 }
 button:hover {
     background-color: var(--alternative-call-to-action);
     color: var(--primary);
-    cursor: pointer;
 }
 
 span.call-to-action {
@@ -85,11 +83,17 @@ span.chip {
 
 li.todo-item {
     transition: color .2s;
+    cursor: pointer;
+
 }
 
-li.todo-item:hover {
+li.todo-item:hover, .completed {
     color: grey;
     font-style: italic;
     text-decoration: line-through;
-    cursor: pointer;
+}
+
+
+li.completed:hover {
+    color: red;
 }

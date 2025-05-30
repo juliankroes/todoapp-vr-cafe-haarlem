@@ -49,4 +49,8 @@ div.inline-item {
     display: flex;
     justify-content: space-between;
   }
+  .main-features section {
+    width: 50%;
+    overflow-x: hidden;
+  }
 }
