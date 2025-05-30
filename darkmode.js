@@ -38,7 +38,7 @@ function setDarkMode() {
 function setLightMode() {
   const root = document.documentElement.style
   root.setProperty('--background', '#ffffff')
-  root.setProperty('--surface', '#108e30')
+  root.setProperty('--surface', '#c7c7c7')
   root.setProperty('--primary', '#1d1921')
   root.setProperty('--call-to-action', '#ba49f2')
   root.setProperty('--alternative-call-to-action', '#108e30')

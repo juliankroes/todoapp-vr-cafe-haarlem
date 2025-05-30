@@ -6,6 +6,7 @@
     --surface: #63108e;
     --call-to-action: #35f2aa;
     --alternative-call-to-action: #fd3d81;
+    --error: crimson;
     --border-radius: 10px;
 }
 
@@ -52,7 +53,9 @@ a:hover {
 
 select {
     background-color: transparent;
-    border: none;
+    border: 2px solid var(--primary);
+    border-radius: var(--border-radius);
+    padding: .2rem .4rem;
 }
 
 button {
@@ -79,6 +82,10 @@ span.chip {
     font-size: 12px;
     padding: .1rem .4rem;
     margin-left: .5rem;
+}
+span.error {
+    color: var(--error);
+    font-size: 12px;
 }
 
 li.todo-item {

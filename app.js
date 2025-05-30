@@ -1,26 +1,43 @@
 const LOCAL_STORAGE_TODO_KEY = "todolist"
 
 const textInput = document.getElementById("textInput")
-const categoryDropdown = document.getElementById("categoryDropdown")
-const submitButton = document.getElementById("submitTodo")
+const textInputRequired = document.getElementById("textInputRequired")
 
+const categoryDropdown = document.getElementById("categoryDropdown")
+const categoryDropdownRequired = document.getElementById("categoryDropdownRequired")
+
+const submitButton = document.getElementById("submitTodo")
+const filterDropdown = document.getElementById("filterDropdown")
+
+function resetForm() {
+    textInputRequired.style.display = "none"
+    textInput.value.value = ""
+
+    categoryDropdownRequired.style.display = "none"
+    categoryDropdown.value = ""
+}
 function setup() {
     console.log('setup')
     if (!localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) {
         localStorage.setItem(LOCAL_STORAGE_TODO_KEY, "[]")
     }
     loadTodos()
+    resetForm()
 }
 setup()
+
+filterDropdown.addEventListener('change', loadTodos)
 
 submitButton.addEventListener("click", () => {
     if (textInput.value.length <= 0) {
         console.log("NO TODO ENTERED")
+        textInputRequired.style.display = "block"
         return
     }
 
     if (categoryDropdown.value === "") {
         console.log("NO CATEGORY ENTERED")
+        categoryDropdownRequired.style.display = "block"
         return
     }
 
@@ -34,6 +51,7 @@ submitButton.addEventListener("click", () => {
 
     localSave(todo)
     loadTodos()
+    resetForm()
 })
 
 
@@ -46,9 +64,10 @@ function localSave(todo) {
 }
 
 function getAllTodos() {
-    const todoArrayString = localStorage.getItem(LOCAL_STORAGE_TODO_KEY)
-    const todoArray = JSON.parse(todoArrayString)
-    return todoArray
+    const todoListString = localStorage.getItem(LOCAL_STORAGE_TODO_KEY)
+    const todoList = JSON.parse(todoListString)
+    const filteredTodoList = filterTodos(todoList, filterDropdown.value)
+    return filteredTodoList
 }
 
 function deleteTodoById(id) {
@@ -78,10 +97,24 @@ function completeTodoById(id) {
     loadTodos()
 }
 
+function filterTodos(todoList, filterMethod) {
+    console.log(filterMethod)
+    switch (filterMethod) {
+        case 'category':
+            return todoList.sort((a, b) => a.category.localeCompare(b.category))
+        case 'oldest':
+            return todoList.sort((a, b) => a.creationTime - b.creationTime)
+        case 'newest':
+            return todoList.sort((a, b) => b.creationTime - a.creationTime)
+        default:
+            return todoList
+    }
+}
 
 function loadTodos() {
     todoList = document.getElementById("todoList")
     todoList.innerHTML = ''
+
     for (let todo of getAllTodos()) {
         // create div with inline
         inlineItem = document.createElement('div')
