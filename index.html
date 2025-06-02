@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <base href="/todolist/">
+    <script>
+        const base = document.createElement('base')
+        base.href = location.pathname.includes('/todolist') ? '/todolist' : ''
+        document.head.appendChild(base)
+    </script>
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="style.css">
     <script src="app.js" defer></script>
