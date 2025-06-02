@@ -1,15 +1,5 @@
 const LOCAL_STORAGE_TODO_KEY = "todolist"
 
-function setup() {
-    console.log('setup')
-    if (!localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) {
-        localStorage.setItem(LOCAL_STORAGE_TODO_KEY, "[]")
-    }
-    loadTodos()
-    resetForm()
-}
-setup()
-
 
 // initialise HTML elements
 
@@ -22,6 +12,16 @@ const categoryDropdownRequired = document.getElementById("categoryDropdownRequir
 const submitButton = document.getElementById("submitTodo")
 const filterDropdown = document.getElementById("filterDropdown")
 
+
+function setup() {
+    console.log('setup')
+    if (!localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) {
+        localStorage.setItem(LOCAL_STORAGE_TODO_KEY, "[]")
+    }
+    loadTodos()
+    resetForm()
+}
+setup()
 
 // adding events to elements
 
