@@ -1,21 +1,5 @@
 const LOCAL_STORAGE_TODO_KEY = "todolist"
 
-const textInput = document.getElementById("textInput")
-const textInputRequired = document.getElementById("textInputRequired")
-
-const categoryDropdown = document.getElementById("categoryDropdown")
-const categoryDropdownRequired = document.getElementById("categoryDropdownRequired")
-
-const submitButton = document.getElementById("submitTodo")
-const filterDropdown = document.getElementById("filterDropdown")
-
-function resetForm() {
-    textInputRequired.style.display = "none"
-    textInput.value.value = ""
-
-    categoryDropdownRequired.style.display = "none"
-    categoryDropdown.value = ""
-}
 function setup() {
     console.log('setup')
     if (!localStorage.getItem(LOCAL_STORAGE_TODO_KEY)) {
@@ -25,6 +9,21 @@ function setup() {
     resetForm()
 }
 setup()
+
+
+// initialise HTML elements
+
+const textInput = document.getElementById("textInput")
+const textInputRequired = document.getElementById("textInputRequired")
+
+const categoryDropdown = document.getElementById("categoryDropdown")
+const categoryDropdownRequired = document.getElementById("categoryDropdownRequired")
+
+const submitButton = document.getElementById("submitTodo")
+const filterDropdown = document.getElementById("filterDropdown")
+
+
+// adding events to elements
 
 filterDropdown.addEventListener('change', loadTodos)
 
@@ -54,14 +53,29 @@ submitButton.addEventListener("click", () => {
     resetForm()
 })
 
+function resetForm() {
+    textInputRequired.style.display = "none"
+    textInput.value = ""
 
-function localSave(todo) {
-    const todoArrayString = localStorage.getItem(LOCAL_STORAGE_TODO_KEY)
-    let todoArray = JSON.parse(todoArrayString)
-    todoArray.push(todo)
-    const updatedTodoArrayString = JSON.stringify(todoArray)
-    localStorage.setItem(LOCAL_STORAGE_TODO_KEY, updatedTodoArrayString)
+    categoryDropdownRequired.style.display = "none"
+    categoryDropdown.value = ""
 }
+
+
+
+// basic CRUD operations
+
+// CREATE
+function localSave(todo) {
+    const todoListString = localStorage.getItem(LOCAL_STORAGE_TODO_KEY)
+    let todoList = JSON.parse(todoListString)
+    todoList.push(todo)
+    const updatedTodoListString = JSON.stringify(todoList)
+    localStorage.setItem(LOCAL_STORAGE_TODO_KEY, updatedTodoListString)
+}
+
+
+// READ
 
 function getAllTodos() {
     const todoListString = localStorage.getItem(LOCAL_STORAGE_TODO_KEY)
@@ -70,35 +84,39 @@ function getAllTodos() {
     return filteredTodoList
 }
 
-function deleteTodoById(id) {
-    let todoList = getAllTodos()
-    todoList = todoList.filter(todo => todo.id !== id)
-    const updatedTodoArrayString = JSON.stringify(todoList)
-    localStorage.setItem(LOCAL_STORAGE_TODO_KEY, updatedTodoArrayString)
-    loadTodos()
-}
+// UPDATE
 
 function completeTodoById(id) {
     let todoList = getAllTodos()
     
-    // hier doen we gewoon een linear search omdat er realistisch gezien nooit meer dan 20 todo's zullen zijn 
+    // Linear search, since there will realistically never be more than 20 todos
     for (todo of todoList) {
         if (todo.id === id && !todo.completed) {
             todo.completed = true;
         } else if (todo.id === id && todo.completed) {
-            deleteTodoById(id)
+            deleteTodoById(id) // deletes the todo if it was already deleted
             return
         }
-
     }
-
-    const updatedTodoArrayString = JSON.stringify(todoList)
-    localStorage.setItem(LOCAL_STORAGE_TODO_KEY, updatedTodoArrayString)
+    const updatedTodoListString = JSON.stringify(todoList)
+    localStorage.setItem(LOCAL_STORAGE_TODO_KEY, updatedTodoListString)
     loadTodos()
 }
 
+// DELETE
+
+function deleteTodoById(id) {
+    let todoList = getAllTodos()
+    todoList = todoList.filter(todo => todo.id !== id)
+    const updatedTodoListString = JSON.stringify(todoList)
+    localStorage.setItem(LOCAL_STORAGE_TODO_KEY, updatedTodoListString)
+    loadTodos()
+}
+
+
+// helper functions
+
 function filterTodos(todoList, filterMethod) {
-    console.log(filterMethod)
     switch (filterMethod) {
         case 'category':
             return todoList.sort((a, b) => a.category.localeCompare(b.category))
@@ -140,7 +158,6 @@ function loadTodos() {
 
         // append both to todolist
         todoList.appendChild(inlineItem)
-
     }
 }
 
