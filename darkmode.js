@@ -5,8 +5,15 @@ displayToggle.addEventListener('click', toggleDisplayMode)
 
 function setup() {
     console.log('setup')
+
     if (!localStorage.getItem(LOCAL_STORAGE_DISPLAY_MODE_KEY)) {
         localStorage.setItem(LOCAL_STORAGE_DISPLAY_MODE_KEY, "dark mode")
+    }
+
+    if (localStorage.getItem(LOCAL_STORAGE_DISPLAY_MODE_KEY) === "light mode") {
+        setLightMode()
+    } else {
+        setDarkMode()
     }
 }
 setup()
